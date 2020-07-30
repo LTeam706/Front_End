@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
+// import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
 import useStyles from '../styles/userprofile-styles'
 import Card from '@material-ui/core/Card'
 
@@ -52,6 +52,7 @@ export default function UserProfile() {
 
         <Card className={classes.cardDiv}>
             <h1>Profile</h1>
+            <hr></hr>
             <h2>{user.username}</h2>
             <p>First Name: {user.firstname}</p>
             <p>Last Name: {user.lastname}</p>

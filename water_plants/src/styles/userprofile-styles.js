@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
     cardDiv: {
         width: '30%',
-        backgroundColor: '#3B945E',
+        backgroundColor: 'rgba(59, 148, 94, .6)',
         padding: theme.spacing(3, 6),
         margin: '10% auto',
         boxShadow:'10px 10px 5px 0px rgba(0,0,0,0.75)',
