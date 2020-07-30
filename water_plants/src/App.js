@@ -41,19 +41,13 @@ function App() {
   return (
     <div className="App">
       <div className='nav-links'>
-        {/* <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a> */}
-        {/* <Link to='/register'>Register</Link>
-        <Link to='/private/user'>User Profile</Link>
-        <Link to="/">Plant Dashboard</Link> */}
         <Header logout={logoutUser}/>
-        {/* <button onClick={() => logoutUser()}>Logout</button> */}
       </div>
 
       {/* Switch for endpoints */}
       <Switch>
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
-        {/* <Route exact path='/userprofile' component={UserProfile}/> */}
 
         <UserContext.Provider value={{userInfo, setUserInfo, plantList, setPlants}}>
           <Route exact path='/signin'  component={SignInSide}/>

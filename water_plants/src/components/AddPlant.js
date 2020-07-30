@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {useHistory, Redirect} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
@@ -10,7 +10,9 @@ import {UserContext} from '../context/UserContext'
 import formSchema from '../validation/addPlantFormSchema';
 
 //styles
-import {Errors} from '../styles/AddPlantStyles'
+import {
+    Errors, OuterDiv, StyledForm, StyledBtn, StyledInput, StyledLabel, StyledTitle
+} from '../styles/AddPlantStyles';
 
 const AddPlant = props => {
     const {userInfo, setPlants, plantList} = useContext(UserContext);
@@ -87,46 +89,47 @@ const AddPlant = props => {
     }
 
     return(
-      <div>
-        <Errors>
-            <p>{errorValues.name}</p>
-            <p>{errorValues.species}</p>
-            <p>{errorValues.water_frequency}</p>
-        </Errors>
-        <form onSubmit={submitForm}>
-            <label htmlFor='name'>
+      <OuterDiv>
+        <StyledForm onSubmit={submitForm}>
+            <StyledTitle>Add A Plant</StyledTitle>
+            <Errors>
+                <p>{errorValues.name}</p>
+                <p>{errorValues.species}</p>
+                <p>{errorValues.water_frequency}</p>
+            </Errors>
+            <StyledLabel htmlFor='name'>
                 Plant name: &nbsp;
-                <input 
+                <StyledInput 
                     id='name'
                     name='name'
                     type='text'
                     onChange={changeHandler}
                     value={formValues.name}
                 />
-            </label>
-            <label htmlFor="species">
+            </StyledLabel>
+            <StyledLabel htmlFor="species">
                 Plant Species: &nbsp;
-                <input 
+                <StyledInput 
                     id='species'
                     name='species'
                     type='text'
                     onChange={changeHandler}
                     value={formValues.species}
                 />
-            </label>
-            <label htmlFor='water_frequency'>
+            </StyledLabel>
+            <StyledLabel htmlFor='water_frequency'>
                 Plant Water Frequency: &nbsp;
-                <input 
+                <StyledInput 
                     id='water_frequency'
                     name='water_frequency'
                     type='text'
                     onChange={changeHandler}
                     value={formValues.water_frequency}
                 />
-            </label>
-            <button id="submit" disabled={btnDisabled}>Add Plant</button>
-        </form>
-      </div>
+            </StyledLabel>
+            <StyledBtn id="submit" disabled={btnDisabled}>Add Plant</StyledBtn>
+        </StyledForm>
+      </OuterDiv>
     )
 }
 

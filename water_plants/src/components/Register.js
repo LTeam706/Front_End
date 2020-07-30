@@ -147,7 +147,7 @@ export default function Register(props){
                         value={formValues.firstname}
                         onChange={onInputChange} // checkes
                         placeholder='First Name'
-                        maxlength='14'
+                        maxLength='14'
                         name='firstname'
                         type='text'
                     />

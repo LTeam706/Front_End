@@ -11,7 +11,9 @@ import {UserContext} from '../context/UserContext';
 import userSchema from '../validation/userSchema';
 
 //styles
-import {Errors} from '../styles/AddPlantStyles'
+import {
+    Errors, StyledLabel, StyledBtn, StyledForm, StyledInput, StyledTitle
+} from '../styles/AddPlantStyles'
 
 const EditUser = () => {
     const {userInfo, setUserInfo} = useContext(UserContext);
@@ -95,59 +97,59 @@ const EditUser = () => {
                 <p>{formErrors.primaryemail}</p>
                 <p>{formErrors.phone}</p>
             </Errors>
-            <form onSubmit={submitForm}>
-                <label htmlFor="editUsername">
+            <StyledForm onSubmit={submitForm}>
+                <StyledLabel htmlFor="editUsername">
                     Username: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editUsername"
                         name="username"
                         type="text"
                         onChange={changeHandler}
                         value={formValues.username}
                     />
-                </label>
-                <label htmlFor="editFirt">
+                </StyledLabel>
+                <StyledLabel htmlFor="editFirt">
                     First Name: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editFirst"
                         name="firstname"
                         type="text"
                         onChange={changeHandler}
                         value={formValues.firstname}
                     />
-                </label>
-                <label htmlFor="editLast">
+                </StyledLabel>
+                <StyledLabel htmlFor="editLast">
                     Last Name: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editLast"
                         name="lastname"
                         type="text"
                         onChange={changeHandler}
                         value={formValues.lastname} 
                     />
-                </label>
-                <label htmlFor="editEmail">
+                </StyledLabel>
+                <StyledLabel htmlFor="editEmail">
                     Email: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editEmail"
                         name="primaryemail"
                         type="primaryemail"
                         onChange={changeHandler}
                         value={formValues.primaryemail}
                     />
-                </label>
-                <label htmlFor="editPhone">
+                </StyledLabel>
+                <StyledLabel htmlFor="editPhone">
                     Phone: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editPhone"
                         name="phone"
                         type="text"
                         onChange={changeHandler}
                         value={formValues.phone} 
                     />
-                </label>
-                <button id="editUserBtn" disabled={disabled}>Edit Information</button>
-            </form>
+                </StyledLabel>
+                <StyledBtn id="editUserBtn" disabled={disabled}>Edit Information</StyledBtn>
+            </StyledForm>
         </div>
     )
 }

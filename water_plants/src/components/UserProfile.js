@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import {Link, useHistory} from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
+import styled from 'styled-components'
+
 
 import {UserContext} from '../context/UserContext'
 
@@ -21,14 +24,14 @@ export default function UserProfile() {
 
     useEffect(() => {
         axiosWithAuth()
-        .get('/myinfo')
-        .then((resp) => {
-            console.log('RESP', resp.data)
-            setUser(resp.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .get('/myinfo')
+            .then((resp) => {
+                console.log('RESP', resp.data)
+                setUser(resp.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }, [])
 
     const deleteUser = () => {
@@ -44,19 +47,19 @@ export default function UserProfile() {
     
 
     return (
-        <div>
-            <div>
+        <ContainerDiv>
+            <CardDiv>
                 <h1>Profile</h1>
-                <h2>Username: {user.username}</h2>
-                <h2>First Name: {user.firstname}</h2>
-                <h2>Last Name: {user.lastname}</h2>
+                <h2>{user.username}</h2>
+                <p>First Name: {user.firstname}</p>
+                <p>Last Name: {user.lastname}</p>
                 <p>email: {user.primaryemail}</p>
                 <p>phone: {user.phone}</p>
-            </div>
+            </CardDiv>
             <div>
                 <Link to="/private/edituser"><button>Edit User Profile</button></Link>
                 <button onClick={() => deleteUser()}>Delete User Profile</button>
             </div>
-        </div>
+        </ContainerDiv>
     )
 }
