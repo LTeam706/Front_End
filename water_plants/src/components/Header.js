@@ -12,11 +12,15 @@ const [prevURL, setPrevURL] = useState('')
 
 function refresh(){
     setCurrentURL(history.location.pathname)
+    //console.log('refresed')
 }
 
 useEffect(() => {
     refresh()
-  },[logout])
+  })
+
+//   [logout]
+
 
     return(
         <header>
