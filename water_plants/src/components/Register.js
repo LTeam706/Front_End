@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import styled from 'styled-components'
 
 const RegDiv = styled.div`
-height: 100rem;
+height: 100rem;;
 width: 75%;
 margin: 5% 10% 5% 10%;
 display: flex;
@@ -39,7 +39,7 @@ form {
 }
 
 button{
-  width: 20%;
+  width: 55%;
   height: 12%;
   border-radius: 5%;
   font-size:3rem;
@@ -67,6 +67,19 @@ input{
       flex-direction: column;
       align-items: center;
       
+    }
+    button{
+      width: 75%;
+    }
+}
+
+@media(max-width:600px){
+    label{
+      font-size:4rem;
+    }
+    button{
+      width: 85%;
+      font-size: 2rem;
     }
 }
 `
@@ -210,7 +223,7 @@ export default function Register(props){
             </div>
 
             <form>
-                <label>First Name: 
+                <label>First Name
                     <input 
                         value={formValues.firstname}
                         onChange={onInputChange} // checkes
@@ -221,7 +234,7 @@ export default function Register(props){
                     />
 
                 </label>
-                <label>Last Name: &nbsp;
+                <label>Last Name
                     <input 
                         value={formValues.lastname}
                         onChange={onInputChange}
@@ -230,7 +243,7 @@ export default function Register(props){
                         type='text'
                     />
                 </label>
-                <label>E-Mail: &nbsp;
+                <label>E-Mail
                     <input 
                         value={formValues.primaryemail}
                         onChange={onInputChange}
@@ -239,7 +252,7 @@ export default function Register(props){
                         type='email'
                     />
                 </label>
-                <label>Username &nbsp;
+                <label>Username
                     <input 
                         value={formValues.username}
                         onChange={onInputChange}
@@ -248,7 +261,7 @@ export default function Register(props){
                         type='text'
                     />
                 </label>
-                <label>Phone Number: &nbsp;
+                <label>Phone Number
                     <input 
                         value={formValues.phone}
                         onChange={onInputChange}
@@ -257,7 +270,7 @@ export default function Register(props){
                         type='text'
                     />
                 </label>
-                <label>Password &nbsp;
+                <label>Password
                     <input 
                         value={formValues.password}
                         onChange={onInputChange}
