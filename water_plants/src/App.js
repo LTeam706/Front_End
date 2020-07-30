@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route, useHistory } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import SignInSide from './material-ui/SignInSide';
 
 import {axiosWithAuth} from './utils/axiosWithAuth'

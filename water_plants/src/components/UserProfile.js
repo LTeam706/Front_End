@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
-import {Link, useHistory} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
-import styled from 'styled-components'
+// import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
+import useStyles from '../styles/userprofile-styles'
+import Card from '@material-ui/core/Card'
 
+import { UserContext } from '../context/UserContext'
 
-import {UserContext} from '../context/UserContext'
 
 const initialUserValue = {
     username: '',
@@ -19,9 +20,10 @@ const initialUserValue = {
 
 export default function UserProfile() {
     const [user, setUser] = useState(initialUserValue)
-    const {userInfo} = useContext(UserContext);
+    const { userInfo } = useContext(UserContext);
     const history = useHistory();
-
+    
+    const classes = useStyles()
     useEffect(() => {
         axiosWithAuth()
             .get('/myinfo')
@@ -44,22 +46,23 @@ export default function UserProfile() {
             })
             .catch(err => console.log(err))
     }
-    
+
 
     return (
-        <ContainerDiv>
-            <CardDiv>
-                <h1>Profile</h1>
-                <h2>{user.username}</h2>
-                <p>First Name: {user.firstname}</p>
-                <p>Last Name: {user.lastname}</p>
-                <p>email: {user.primaryemail}</p>
-                <p>phone: {user.phone}</p>
-            </CardDiv>
+
+        <Card className={classes.cardDiv}>
+            <h1>Profile</h1>
+            <hr></hr>
+            <h2>{user.username}</h2>
+            <p>First Name: {user.firstname}</p>
+            <p>Last Name: {user.lastname}</p>
+            <p>email: {user.primaryemail}</p>
+            <p>phone: {user.phone}</p>
+
             <div>
                 <Link to="/private/edituser"><button>Edit User Profile</button></Link>
                 <button onClick={() => deleteUser()}>Delete User Profile</button>
             </div>
-        </ContainerDiv>
+        </Card>
     )
 }
