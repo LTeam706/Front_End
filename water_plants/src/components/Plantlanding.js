@@ -5,6 +5,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { Switch, Link, Route } from 'react-router-dom'
 import {UserContext} from '../context/UserContext';
 import {PlantContext} from '../context/PlantContext';
+import styled from 'styled-components';
 
 // export default function Plantlanding(props){
 //     const [plants, setPlants] = useState([])
@@ -44,6 +45,43 @@ import {PlantContext} from '../context/PlantContext';
 
 // import {axiosWithAuth} from '../utils/axiosWithAuth'
 
+const StyledDiv = styled.div`
+    height: 100rem;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify */
+
+    h2 {
+        width:45%;
+        margin: 2%;
+        font-size: 6rem;
+        border-bottom: 2px solid white;
+        /* border-bottom: 2px solid black; */
+        background-color: rgba(59, 148, 94, .8); 
+    }
+    button {
+        text-decoration: none;
+        background-color: rgba(	0, 191, 255, .9); 
+        color: #333333;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC;
+        font-size: 3rem;
+        /* width: 15%; */
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 95%;
+        margin: 1%;
+    }
+ 
+`
+
 export default function Plantlanding(){
 
     const {userInfo, setUserInfo, setPlants, plantList} = useContext(UserContext);
@@ -63,9 +101,10 @@ export default function Plantlanding(){
     }, [plantList]);
 
     return(
-        <div className='plant-page'>
+        <StyledDiv className='plant-page'>
             <h2> Your Plants!</h2>
              <Link to="/private/addplant"><button>Add Plant </button></Link>
+            
             {!plants ? <span></span> : 
                 (
             <div>
@@ -81,6 +120,6 @@ export default function Plantlanding(){
             </div>
                 )
             }
-        </div>
+        </StyledDiv>
     )
 }

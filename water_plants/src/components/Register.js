@@ -5,11 +5,12 @@ import * as yup from 'yup';
 import styled from 'styled-components'
 
 const RegDiv = styled.div`
-height: 100rem;;
-width: 75%;
-margin: 5% 10% 5% 10%;
+height: 100rem;
+margin: 5% 5% 5% 5%;
 display: flex;
 flex-direction: column;
+justify-content: center;
+/* align-items: center; */
 background-color:  #3B945E;
 /* background: a(.1) */
 background-color: rgba(59, 148, 94, .8); 
@@ -22,7 +23,7 @@ span{
 h2 {
   margin: 2%;
   font-size: 6rem;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid white;
 }
 
 h2:hover{
