@@ -2,6 +2,88 @@
 import React, {useState, useEffect,} from "react";
 import axios from 'axios';
 import * as yup from 'yup';
+import styled from 'styled-components'
+
+const RegDiv = styled.div`
+height: 100rem;
+margin: 5% 5% 5% 5%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+/* align-items: center; */
+background-color:  #3B945E;
+/* background: a(.1) */
+background-color: rgba(59, 148, 94, .8); 
+/* background-color: white; */
+border-radius: 2%;
+
+span{
+  color: deepskyblue
+}
+h2 {
+  margin: 2%;
+  font-size: 6rem;
+  border-bottom: 2px solid white;
+}
+
+h2:hover{
+  
+}
+form {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /* align-items: baseline; */
+}
+
+button{
+  width: 55%;
+  height: 12%;
+  border-radius: 5%;
+  font-size:3rem;
+}
+
+label{
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 5rem;
+  padding: 0 5% 0 5%;
+}
+input{
+  height: 55%;
+  width: 45%;
+}
+
+@media(max-width:1130px){
+    form{
+      height: 
+      flex-direction: row;
+    }
+    label{
+      flex-direction: column;
+      align-items: center;
+      
+    }
+    button{
+      width: 75%;
+    }
+}
+
+@media(max-width:600px){
+    label{
+      font-size:4rem;
+    }
+    button{
+      width: 85%;
+      font-size: 2rem;
+    }
+}
+`
 
 
 const initialFormValues = {
@@ -130,8 +212,8 @@ export default function Register(props){
     // build elements for form/ inputs for first name, last name, email, phone number, and password
     return(
        
-        <div className='registration' onSubmit={onSubmit}>
-            <h2>Join WaterMyPlants Today!</h2>
+        <RegDiv className='registration' onSubmit={onSubmit}>
+            <h2>Join Water<span>My</span>Plants Today!</h2>
             <div className='errors-container'>
                 <div>{formErrors.firstname}</div>
                 <div>{formErrors.lastname}</div>
@@ -142,7 +224,7 @@ export default function Register(props){
             </div>
 
             <form>
-                <label>First Name:&nbsp;
+                <label>First Name
                     <input 
                         value={formValues.firstname}
                         onChange={onInputChange} // checkes
@@ -153,7 +235,7 @@ export default function Register(props){
                     />
 
                 </label>
-                <label>Last Name: &nbsp;
+                <label>Last Name
                     <input 
                         value={formValues.lastname}
                         onChange={onInputChange}
@@ -162,7 +244,7 @@ export default function Register(props){
                         type='text'
                     />
                 </label>
-                <label>E-Mail: &nbsp;
+                <label>E-Mail
                     <input 
                         value={formValues.primaryemail}
                         onChange={onInputChange}
@@ -171,7 +253,7 @@ export default function Register(props){
                         type='email'
                     />
                 </label>
-                <label>Username &nbsp;
+                <label>Username
                     <input 
                         value={formValues.username}
                         onChange={onInputChange}
@@ -180,7 +262,7 @@ export default function Register(props){
                         type='text'
                     />
                 </label>
-                <label>Phone Number: &nbsp;
+                <label>Phone Number
                     <input 
                         value={formValues.phone}
                         onChange={onInputChange}
@@ -189,7 +271,7 @@ export default function Register(props){
                         type='text'
                     />
                 </label>
-                <label>Password &nbsp;
+                <label>Password
                     <input 
                         value={formValues.password}
                         onChange={onInputChange}
@@ -200,6 +282,6 @@ export default function Register(props){
                 </label>
                 <button disabled={disabled} >Submit</button>
             </form>
-        </div>
+        </RegDiv>
     )
 }
