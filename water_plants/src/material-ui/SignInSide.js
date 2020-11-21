@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom'
-import axios from 'axios';
-import * as yup from 'yup';
-import schema from '../validation/formSchema';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import * as yup from "yup";
+import schema from "../validation/formSchema";
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 // import { createMuiTheme } from '@material-ui/core/styles';
 // import pink from '@material-ui/core/colors/purple';
 // import green from '@material-ui/core/colors/green';
@@ -23,40 +23,43 @@ import { makeStyles } from '@material-ui/core/styles';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" to="https://material-ui.com/">
         Water My Plants
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: "100vh",
   },
   image: {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1560712375-b30a73cbe790?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=620&q=80)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage:
+      "url(https://images.unsplash.com/photo-1560712375-b30a73cbe790?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=620&q=80)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
   paper: {
     margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -66,87 +69,82 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide(props) {
   //making login screen color theme green
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: green,
-//     secondary: pink,
-//   }
-// });
-      //login form stuff
+  // const theme = createMuiTheme({
+  //   palette: {
+  //     primary: green,
+  //     secondary: pink,
+  //   }
+  // });
+  //login form stuff
   const initialFormValues = {
     username: "",
-    password: ""
-  }
+    password: "",
+  };
   const initialFormErrors = {
     username: "",
-    password: ""
-  }
+    password: "",
+  };
 
-  const initialDisabled = false
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
-  const [formValues, setFormValues] = useState(initialFormValues)
-  const [disabled, setDisabled] = useState(initialDisabled)
+  const initialDisabled = false;
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const inputChange = (name, value) => {
     yup
       .reach(schema, name)
       .validate(value)
-      .then(valid => {
+      .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: ""
-        })
+          [name]: "",
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         setFormErrors({
           ...formErrors,
-          [name]: err.errors[0]
-        })
-      })
+          [name]: err.errors[0],
+        });
+      });
     setFormValues({
       ...formValues,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
-
-
-  const submit = event => {
+  const submit = (event) => {
     event.preventDefault();
 
     const newUser = {
       username: formValues.username.trim(),
-      password: formValues.password.trim()
-    }
+      password: formValues.password.trim(),
+    };
 
-    axios.post('https://watermyplantsdatabase.herokuapp.com/login', `grant_type=password&username=${newUser.username}&password=${newUser.password}`, {
-      headers: {
-        // btoa is converting our client id/client secret into base64
-        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-    .then(res => {
-      console.log(res);
-      localStorage.setItem('token', res.data.access_token);
-      props.history.push('/');
-    })
-    .catch(err => console.log(err))
-  }
+    axios
+      .post("https://watermyplantsdatabase.herokuapp.com/login", newUser)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.token);
+        props.history.push("/");
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
-    schema.isValid(formValues).then(valid => {
-      setDisabled(!valid)
-    }, [formValues])
-  })
+    schema.isValid(formValues).then(
+      (valid) => {
+        setDisabled(!valid);
+      },
+      [formValues],
+    );
+  });
 
   const classes = useStyles();
 
   const onInputChange = (evt) => {
-    const {name, value} = evt.target
-    inputChange(name, value)
-}
-
+    const { name, value } = evt.target;
+    inputChange(name, value);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -185,12 +183,12 @@ export default function SignInSide(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange = {onInputChange}
+              onChange={onInputChange}
             />
             <div>
-                    <div>{formErrors.username}</div>
-                    <div>{formErrors.password}</div>
-                </div>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.password}</div>
+            </div>
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me" */}
@@ -220,4 +218,4 @@ export default function SignInSide(props) {
       </Grid>
     </Grid>
   );
-  }
+}
